@@ -1,6 +1,7 @@
 // lib/screens/dashboard.dart
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import '../config.dart';
 import 'dart:convert';
 import '../widgets/current_weather_card.dart';
 import '../widgets/forecast_list.dart';
@@ -226,9 +227,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     setState(() => _loading = true);
     try {
       // Fetch current weather
-      final currentUrl = Uri.parse(
-        'http://localhost:3000/weather/current?city=$city',
-      );
+      final currentUrl = Uri.parse('$kApiBaseUrl/weather/current?city=$city');
       final currResp = await http.get(currentUrl);
       if (currResp.statusCode == 200) {
         _currentData = jsonDecode(currResp.body);
@@ -237,7 +236,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       }
       // Fetch 7-day forecast
       final forecastUrl = Uri.parse(
-        'http://localhost:3000/weather/forecast?city=$city&days=7',
+        '$kApiBaseUrl/weather/forecast?city=$city&days=7',
       );
       final foreResp = await http.get(forecastUrl);
       if (foreResp.statusCode == 200) {
@@ -274,7 +273,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _loading = true;
     });
     try {
-      final url = Uri.parse('http://localhost:3000/weather/current?city=$city');
+      final url = Uri.parse('$kApiBaseUrl/weather/current?city=$city');
       print('[Dashboard] Fetching $url');
       final resp = await http.get(url);
       print(
@@ -309,7 +308,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final city = _subCityController.text.trim();
     if (email.isEmpty || city.isEmpty) return;
     print('[Dashboard] Register email=$email, city=$city');
-    final url = Uri.parse('http://localhost:3000/subscription/register');
+    final url = Uri.parse('$kApiBaseUrl/subscription/register');
     try {
       final resp = await http.post(
         url,
@@ -336,7 +335,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     final email = _emailController.text.trim();
     if (email.isEmpty) return;
     print('[Dashboard] Unsubscribe email=$email');
-    final url = Uri.parse('http://localhost:3000/subscription/unsubscribe');
+    final url = Uri.parse('$kApiBaseUrl/subscription/unsubscribe');
     try {
       final resp = await http.post(
         url,
