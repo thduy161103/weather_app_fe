@@ -1,4 +1,4 @@
 [build]
-base = "frontend/weather_dashboard"   # nếu bạn deploy chung cả FE+BE
+base = "frontend/weather_dashboard" 
 command = "flutter pub get && flutter build web --release --dart-define=API_BASE_URL=$API_BASE_URL"
 publish = "build/web"
