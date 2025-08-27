@@ -14,3 +14,10 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
+How to run project:
+- New terminal
+- git clone "https://github.com/thduy161103/weather_app_fe/"
+- flutter pub get
+- flutter run
